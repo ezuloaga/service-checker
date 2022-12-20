@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return "<h2>Check statuses</h2><a href='enviro'>Enviro+</a><br><a href='wled'>wled</a><br>Changed made 1."
+    return "<h2>Check statuses</h2><a href='enviro'>Enviro+</a><br><a href='wled'>wled</a><br>Changes made 2."
 
 # check on prometheus service
 @app.route('/enviro')
