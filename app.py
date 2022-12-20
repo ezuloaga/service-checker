@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return "<h2>Check statuses</h2><a href='enviro'>Enviro+</a><br><a href='wled'>wled</a><br>POOOP. This will be super useful."
+    return "<h2>Check statuses</h2><a href='enviro'>Enviro+</a><br><a href='wled'>wled</a><br>Changed made 1."
 
 # check on prometheus service
 @app.route('/enviro')
@@ -40,4 +40,5 @@ def wled():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True, host='0.0.0.0') # Docker
+    # app.run(debug=True) # Local windows
