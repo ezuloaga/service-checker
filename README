@@ -1,0 +1,7 @@
+RESTART CONTAINER AFTER CODE CHANGES
+cd ~/docker/service-checker
+sudo docker-compose stop
+delete repo service-checker
+git clone https://github.com/ezuloaga/service-checker.git
+cd service-checker
+sudo docker-compose up -d --build
