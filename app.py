@@ -21,7 +21,7 @@ def enviro():
             status = r.status_code
     except Exception as e:
         status = e
-    return f'Enviro+ prometheus service is <b>{status}</b> at {timestamp}. Remember to flush'
+    return render_template("enviro.html", status=status, timestamp=timestamp)
 
 
 # Check wled url
@@ -36,7 +36,7 @@ def wled():
             status = r.status_code
     except Exception as e:
         status = e
-    return f'Diguno (wled) Wireless is <b>{status}</b> at {timestamp}.'
+    return render_template("wled.html", status=status, timestamp=timestamp)
 
 
 if __name__ == '__main__':
