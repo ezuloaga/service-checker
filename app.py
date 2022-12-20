@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 import datetime as dt
 import requests
 
@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return "<h2>Check statuses</h2><a href='enviro'>Enviro+</a><br><a href='wled'>wled</a><br>Changes made 3."
+    return render_template("home.html")
 
 # check on prometheus service
 @app.route('/enviro')
