@@ -12,19 +12,20 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
   </head>
 <body>
+
+
+<div class="container">
   <div class="dropdown">
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Actions
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-      
+      <button class="dropdown-item" type="button"><a href="{{ url_for('home') }}">Home</a></button>
       <button class="dropdown-item" type="button"><a href="{{ url_for('summary') }}">Summary</a></button>
       <button class="dropdown-item" type="button"><a href="{{ url_for('login') }}">Log in</a></button>
       <button class="dropdown-item" type="button"><a href="{{ url_for('register') }}">Register</a></button>
     </div>
   </div>
-
-<div class="container">
   <img src="{{ url_for('static', filename='images/small_beet.png') }}">
 {% with messages = get_flashed_messages(with_categories=true) %}
   {% if messages %}
@@ -37,7 +38,7 @@
   {% endwith %}
 {% block content %}
 {% endblock %}
-<a href = {{ url_for('summary') }}>Back Home</a>
+<p><a href = {{ url_for('home') }}>Back Home</a></p>
 </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
