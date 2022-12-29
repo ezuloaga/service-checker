@@ -15,10 +15,6 @@ services_to_monitor =	{
 def home():
     return render_template("home.html", title='The Home Page')
 
-
-
-
-
 # Check status of service
 def service_current_status(dest):
     try:
@@ -39,28 +35,34 @@ def service_current_status(dest):
 @app.route('/summary')
 def summary():
     # Status Summary
-    list_of_dicts = [
-                    {'name':'wleds','endpoint':'http://192.168.1.79/'},
-                    {'name':'enviro','endpoint':'http://192.168.1.68:8000/metrics'},
-                    {'name':'unraid','endpoint':'http://192.168.1.12:9100/metrics'},
-                    {'name':'pfsense','endpoint':'http://192.168.1.1:9100/metrics'},
-                    {'name':'home assistant','endpoint':'http://192.168.1.57:8123'}
-                    ]
-    # service1 = {'name':'wleds','endpoint':'http://192.168.1.79/'}
-    # service2 = {'name':'enviro','endpoint':'http://192.168.1.68:8000/metrics'}
-    # # List of dictionaries (dont delete)
+    monitored_services = [
+                    {
+                    'name':"wleds",
+                    'endpoint':"http://192.168.1.79/"
+                    },
 
-    # result = [service_name,endpoint]
-    # for endpoint in list_of_dicts:
-    #     result = requests.get(dest, timeout=10)
-    #     print(result.status_code)
-    # service_name = list_of_dicts['name']
-    # endpoint = list_of_dicts['endpoint']
-    service_dict = {'name':'wleds','endpoint':'http://192.168.1.79/'}, {'name':'enviro','endpoint':'http://192.168.1.68:8000/metrics'}
-    for i in service_dict:
-        service = service_dict[0]
-        # endpoint = service_dict.endpoint[:]
-    return render_template("summary.html", service=service,  title='Service Status')
+                    {
+                        'name':"enviro",
+                    'endpoint':"http://192.168.1.68:8000/metrics"
+                    },
+
+                    {
+                        'name':"unraid",
+                    'endpoint':"http://192.168.1.12:9100/metrics"
+                    },
+
+                    {
+                        'name':"pfsense",
+                    'endpoint':"http://192.168.1.1:9100/metrics"
+                    },
+
+                    {
+                        'name':"home assistant",
+                    'endpoint':"http://192.168.1.57:8123"
+                    }
+                    ]
+    # services2 = {'name':"wleds",'endpoint':"http://192.168.1.79/"}
+    return render_template("summary.html", monitored_services=monitored_services, title='Service Status')
 
 
 # check on prometheus service

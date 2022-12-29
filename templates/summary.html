@@ -1,17 +1,19 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>{{title}}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-    <!-- <link rel="stylesheet" href="css/main.css"> -->
-  </head>
-  <body>
-    <p><a href = {{ url_for('home') }}>Back Home</a></p>
-    <h5>{{title}}</h5>
-<p>{% for s in service %}{{ s.name }}{% endfor %}</p>
-</body>
-</html>
+{% extends "layout.html"%}
+{% block content %}
+<h1>{{title}}</h1>
+<table>
+<tr>
+<th>Sercice Name</th>
+<th>Endpoint</th>
+<th>Status</th>
+</tr>
+{% for service in monitored_services %}
+<tr>
+<td>{{ service.name }}</td>
+<td>{{ service.endpoint }}</td>
+<td>STATUS</td>
+{% endfor %}
+</tr>
+</table>
 
-
-
-
+{% endblock content %}

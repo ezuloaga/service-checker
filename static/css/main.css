@@ -19,7 +19,7 @@ table, th, td {
 
     body {
         margin: 0;
-        padding: 0;
+        padding: 50px;
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
         color: #444;
       }
@@ -76,8 +76,8 @@ table, th, td {
         font-weight: 100;
         margin-top: 30px;
         text-align: center;
-        letter-spacing: -1px;
-        color: #999;
+        /* letter-spacing: -1px; */
+        color: rgb(76, 0, 85);
       }
       .menu {
         float: right;
