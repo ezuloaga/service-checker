@@ -1,14 +1,16 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, flash, redirect
+from forms import RegistrationForm, LoginForm
 import datetime as dt
 import requests
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'c040121b0ff333ddb8b3549340ee64b1'
 
-# Define the services
-services_to_monitor =	{
-  "service_name": ["enviro", "wleds", "unraid","pfsense"],
-  "service_address": ["http://192.168.1.68:8000/metrics", "http://192.168.1.79/", "http://192.168.1.12:9100/metrics",'http://192.168.1.1:9100/metrics']
-}
+# # Define the services
+# services_to_monitor =	{
+#   "service_name": ["enviro", "wleds", "unraid","pfsense"],
+#   "service_address": ["http://192.168.1.68:8000/metrics", "http://192.168.1.79/", "http://192.168.1.12:9100/metrics",'http://192.168.1.1:9100/metrics']
+# }
 
 # Home Page
 @app.route('/')
@@ -61,7 +63,7 @@ def summary():
                     'endpoint':"http://192.168.1.57:8123"
                     }
                     ]
-    return render_template("summary.html", monitored_services=monitored_services, title='Service Status')
+    return render_template("summary.html", monitored_services=monitored_services, title='Services Summary')
 
 
 # check on ENVIRO+
@@ -92,6 +94,28 @@ def wled():
     except Exception as e:
         status = e
     return render_template("wled.html", status=status, timestamp=timestamp, title='wled')
+
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        flash(f'Account created for {form.username.data}!','success')
+        # return redirect(url_for('home'))
+        return redirect(url_for('summary'))
+    return render_template("register.html", title='Register', form=form)
+
+
+@app.route("/login", methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        if form.email.data == 'admin@blog.com' and form.password.data == 'password':
+            flash('You have been logged in!', 'success')
+            return redirect(url_for('summary'))
+        else:
+            flash('Login Unsuccessful. Please check username and password', 'danger')
+    return render_template('login.html', title='Login', form=form)
 
 
 if __name__ == '__main__':
