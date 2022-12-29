@@ -37,35 +37,34 @@ def summary():
     # Status Summary
     monitored_services = [
                     {
-                    'name':"wleds",
+                    'name':"WLED",
                     'endpoint':"http://192.168.1.79/"
                     },
 
                     {
-                        'name':"enviro",
+                        'name':"Enviro+",
                     'endpoint':"http://192.168.1.68:8000/metrics"
                     },
 
                     {
-                        'name':"unraid",
+                        'name':"UNRAID",
                     'endpoint':"http://192.168.1.12:9100/metrics"
                     },
 
                     {
-                        'name':"pfsense",
+                        'name':"pfSense",
                     'endpoint':"http://192.168.1.1:9100/metrics"
                     },
 
                     {
-                        'name':"home assistant",
+                        'name':"Home Assistant",
                     'endpoint':"http://192.168.1.57:8123"
                     }
                     ]
-    # services2 = {'name':"wleds",'endpoint':"http://192.168.1.79/"}
     return render_template("summary.html", monitored_services=monitored_services, title='Service Status')
 
 
-# check on prometheus service
+# check on ENVIRO+
 @app.route('/enviro')
 def enviro():
     try:

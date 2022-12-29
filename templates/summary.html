@@ -1,17 +1,18 @@
 {% extends "layout.html"%}
 {% block content %}
 <h1>{{title}}</h1>
-<table>
+<table class="table">
 <tr>
 <th>Sercice Name</th>
-<th>Endpoint</th>
 <th>Status</th>
+<th>Endpoint</th>
 </tr>
 {% for service in monitored_services %}
 <tr>
 <td>{{ service.name }}</td>
+<td>Down</td>
 <td>{{ service.endpoint }}</td>
-<td>STATUS</td>
+
 {% endfor %}
 </tr>
 </table>
